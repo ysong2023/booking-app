@@ -1,4 +1,4 @@
-import ClientPage from '@/components/ClientPage';
+import ClientPage from '../components/ClientPage';
 
 export default function Home() {
   return <ClientPage />;
