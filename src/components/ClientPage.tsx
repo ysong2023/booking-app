@@ -4,11 +4,11 @@ import { useAuth } from '@/hooks/useAuth';
 import SignInForm from '@/components/auth/SignInForm';
 import BookingTable from '@/components/booking/BookingTable';
 import ChatInterface from '@/components/booking/ChatInterface';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 // 包装useSearchParams的组件
-function ErrorHandler({ children }: { children: React.ReactNode }) {
+function SearchParamsHandler() {
   const searchParams = useSearchParams();
   const error = searchParams.get('error');
 
@@ -18,7 +18,7 @@ function ErrorHandler({ children }: { children: React.ReactNode }) {
     }
   }, [error]);
 
-  return <>{children}</>;
+  return null;
 }
 
 export default function ClientPage() {
@@ -47,44 +47,47 @@ export default function ClientPage() {
   }
 
   return (
-    <ErrorHandler>
-      <div className="min-h-screen flex flex-col justify-center items-center p-4 bg-black">
-        {user ? (
-          <div className="w-full" style={{ maxWidth: 'var(--max-content-width)' }}>
-            <header className="flex justify-between items-center mb-8">
-              <div>
-                <h1 className="text-3xl font-bold text-cyan-400">Restaurant Booking System</h1>
-                <p className="text-cyan-300">Welcome, {user.email}</p>
-              </div>
-              <div className="flex gap-4">
-                <button
-                  onClick={() => window.location.reload()}
-                  className="px-4 py-2 border border-cyan-500 rounded text-cyan-400 hover:bg-gray-900"
-                >
-                  Refresh Data
-                </button>
-                <button
-                  onClick={signOut}
-                  className="px-4 py-2 border border-red-500 rounded text-red-400 hover:bg-gray-900"
-                >
-                  Sign Out
-                </button>
-              </div>
-            </header>
+    <div className="min-h-screen flex flex-col justify-center items-center p-4 bg-black">
+      {/* 使用Suspense包裹SearchParamsHandler */}
+      <Suspense fallback={null}>
+        <SearchParamsHandler />
+      </Suspense>
+      
+      {user ? (
+        <div className="w-full" style={{ maxWidth: 'var(--max-content-width)' }}>
+          <header className="flex justify-between items-center mb-8">
+            <div>
+              <h1 className="text-3xl font-bold text-cyan-400">Restaurant Booking System</h1>
+              <p className="text-cyan-300">Welcome, {user.email}</p>
+            </div>
+            <div className="flex gap-4">
+              <button
+                onClick={() => window.location.reload()}
+                className="px-4 py-2 border border-cyan-500 rounded text-cyan-400 hover:bg-gray-900"
+              >
+                Refresh Data
+              </button>
+              <button
+                onClick={signOut}
+                className="px-4 py-2 border border-red-500 rounded text-red-400 hover:bg-gray-900"
+              >
+                Sign Out
+              </button>
+            </div>
+          </header>
 
-            <div className="grid grid-cols-1 gap-8 max-w-full">
-              <div className="w-full">
-                <BookingTable />
-              </div>
-              <div className="w-full">
-                <ChatInterface />
-              </div>
+          <div className="grid grid-cols-1 gap-8 max-w-full">
+            <div className="w-full">
+              <BookingTable />
+            </div>
+            <div className="w-full">
+              <ChatInterface />
             </div>
           </div>
-        ) : (
-          <SignInForm />
-        )}
-      </div>
-    </ErrorHandler>
+        </div>
+      ) : (
+        <SignInForm />
+      )}
+    </div>
   );
 } 
