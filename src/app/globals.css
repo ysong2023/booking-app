@@ -1,0 +1,532 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #000000;
+  --foreground: #00ffff;
+  --border-color: #005555;
+  --accent-color: #00cccc;
+  --font-size-base: 16px;
+  --font-size-heading: 24px;
+  --font-size-subheading: 20px;
+  --neon-blue: #00ffff;
+  --neon-pink: #ff00ff;
+  --neon-green: #00ff00;
+  --neon-yellow: #ffff00;
+  --neon-orange: #ff8800;
+  --neon-purple: #aa00ff;
+  --max-content-width: 1200px; /* Increased by 25% from 960px */
+}
+
+.dark {
+  --background: #000000;
+  --foreground: #00ffff;
+  --border-color: #005555;
+  --accent-color: #00cccc;
+}
+
+html {
+  font-size: var(--font-size-base);
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: monospace, 'Courier New', Courier;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Main content layout */
+.main-content {
+  width: 100%;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: var(--font-size-heading);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #00ffff;
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+}
+
+h2 {
+  font-size: var(--font-size-subheading);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #00dddd;
+}
+
+.container {
+  width: 100%;
+  max-width: 480px;
+  padding: 2rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: rgba(0, 15, 20, 0.8);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+input {
+  font-family: monospace, 'Courier New', Courier;
+  color: #00ffff !important;
+  background-color: #000000 !important;
+  border-color: #005555 !important;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px #00ffff;
+}
+
+button {
+  font-family: monospace, 'Courier New', Courier;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0.5rem;
+  color: var(--foreground);
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-shadow: 0 0 5px var(--accent-color);
+}
+
+/* Pixel effect for 1px elements */
+.w-1 {
+  width: 0.25rem !important;
+}
+
+.h-1 {
+  height: 0.25rem !important;
+}
+
+/* Cyberpunk glitch effect */
+.glitch-text {
+  position: relative;
+  animation: glitch 1s infinite;
+}
+
+@keyframes glitch {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-2px);
+  }
+  50% {
+    transform: translateX(2px);
+  }
+  75% {
+    transform: translateX(-1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Fixed text style for suggestions */
+.fixed-text {
+  position: relative;
+  color: #00ccbb;
+  text-shadow: 0 0 2px #00ccbb;
+}
+
+/* Pulse animation for cyberpunk elements */
+@keyframes neon-pulse {
+  0%, 100% {
+    text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+  }
+  50% {
+    text-shadow: 0 0 2px #00ffff, 0 0 5px #00ffff;
+  }
+}
+
+h1, h2 {
+  animation: neon-pulse 2s infinite;
+}
+
+/* Restaurant styles */
+.pixel-restaurant {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #00ffff;
+  background-color: #000000;
+  padding: 1rem 0;
+  border-top: 1px solid var(--border-color);
+  overflow: hidden;
+  margin-top: 2rem;
+}
+
+.rain-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  min-height: 320px; /* Using min-height to ensure consistency */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rain-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 100, 200, 0.05) 100%
+  ), 
+  repeating-linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 3px,
+    rgba(200, 200, 255, 0.1) 3px,
+    rgba(200, 200, 255, 0.1) 4px
+  );
+  animation: rain 0.5s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* New fixed frame styles */
+.fixed-frame {
+  position: relative;
+  height: 300px;
+  width: 600px;
+  max-width: 90%;
+  z-index: 2;
+  font-family: monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.restaurant-building {
+  color: var(--neon-blue);
+  text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
+  font-size: 0.9rem;
+  line-height: 1.2;
+  white-space: pre;
+  z-index: 3;
+}
+
+.restaurant-roof, 
+.restaurant-wall {
+  color: var(--neon-blue);
+  text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
+}
+
+.restaurant-sign {
+  color: var(--neon-pink);
+  text-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink);
+  animation: neon-pulse 2s infinite;
+}
+
+.restaurant-door {
+  color: var(--neon-yellow);
+  text-shadow: 0 0 5px var(--neon-yellow), 0 0 10px var(--neon-yellow);
+  animation: neon-flicker 2s infinite;
+}
+
+.cat-animation {
+  position: absolute;
+  font-family: monospace;
+  color: var(--neon-green);
+  text-shadow: 0 0 5px var(--neon-green), 0 0 10px var(--neon-green);
+  font-size: 1rem;
+  z-index: 4;
+}
+
+.rain-drops {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.rain-drop {
+  position: absolute;
+  top: -20px;
+  color: rgba(150, 220, 255, 0.7);
+  font-size: 1.2rem;
+  animation: falling-rain 1.5s linear infinite;
+}
+
+@keyframes falling-rain {
+  0% {
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(320px);
+    opacity: 0.3;
+  }
+}
+
+/* Setting pre tag to have fixed dimensions */
+.restaurant-ascii {
+  font-family: monospace;
+  color: #aaffff;
+  line-height: 1.2;
+  margin: 0 auto;
+  padding: 0;
+  transform-origin: center;
+  font-size: 0.6rem;
+  white-space: pre;
+  position: relative;
+  z-index: 0;
+  max-width: 100%;
+  display: block;
+  text-align: center;
+  min-height: 320px; /* Fixed minimum height */
+  /* Ensure consistent width across frames */
+  width: 90%;
+  box-sizing: content-box;
+}
+
+/* Media query to adjust font size based on screen size */
+@media (min-width: 768px) {
+  .restaurant-ascii {
+    font-size: 0.6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .restaurant-ascii {
+    font-size: 0.7rem;
+  }
+}
+
+/* Colorful neon effects for different parts of the restaurant */
+.restaurant-ascii {
+  --pink-neon: #ff00ff;
+  --blue-neon: #00ffff;
+  --yellow-neon: #ffff00;
+  --green-neon: #00ff77;
+  --purple-neon: #9900ff;
+}
+
+/* Neon restaurant logo animation */
+@keyframes colorRotate {
+  0% {
+    color: var(--neon-blue);
+    text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
+  }
+  20% {
+    color: var(--neon-purple);
+    text-shadow: 0 0 5px var(--neon-purple), 0 0 10px var(--neon-purple);
+  }
+  40% {
+    color: var(--neon-pink);
+    text-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink);
+  }
+  60% {
+    color: var(--neon-orange);
+    text-shadow: 0 0 5px var(--neon-orange), 0 0 10px var(--neon-orange);
+  }
+  80% {
+    color: var(--neon-yellow);
+    text-shadow: 0 0 5px var(--neon-yellow), 0 0 10px var(--neon-yellow);
+  }
+  100% {
+    color: var(--neon-green);
+    text-shadow: 0 0 5px var(--neon-green), 0 0 10px var(--neon-green);
+  }
+}
+
+.neon-sign {
+  margin-bottom: 0.5rem;
+  text-align: center;
+  min-height: 50px; /* Fixed height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.neon-text {
+  font-family: monospace;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  animation: neon-pulse 2s infinite;
+}
+
+.neon-char {
+  display: inline-block;
+  animation: colorRotate 6s linear infinite;
+  animation-delay: calc(var(--i) * 0.3s);
+}
+
+.neon-char-0 {
+  color: var(--neon-pink);
+  text-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink);
+  animation-delay: 0s;
+}
+
+.neon-char-1 {
+  color: var(--neon-blue);
+  text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
+  animation-delay: 0.1s;
+}
+
+.neon-char-2 {
+  color: var(--neon-yellow);
+  text-shadow: 0 0 5px var(--neon-yellow), 0 0 10px var(--neon-yellow);
+  animation-delay: 0.2s;
+}
+
+.neon-char-3 {
+  color: var(--neon-green);
+  text-shadow: 0 0 5px var(--neon-green), 0 0 10px var(--neon-green);
+  animation-delay: 0.3s;
+}
+
+.neon-char-4 {
+  color: var(--neon-purple);
+  text-shadow: 0 0 5px var(--neon-purple), 0 0 10px var(--neon-purple);
+  animation-delay: 0.4s;
+}
+
+.neon-char-5 {
+  color: var(--neon-orange);
+  text-shadow: 0 0 5px var(--neon-orange), 0 0 10px var(--neon-orange);
+  animation-delay: 0.5s;
+}
+
+/* Specific colorful restaurant elements */
+.restaurant-ascii:contains('⚡ OPEN ⚡') {
+  color: #ff5555;
+  animation: neon-flicker 2s infinite;
+}
+
+.restaurant-ascii:contains('█▀█') {
+  color: #ff00ff;
+  text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff;
+}
+
+.restaurant-ascii:contains('=') {
+  color: #ffff00;
+  text-shadow: 0 0 5px #ffff00, 0 0 10px #ffff00;
+}
+
+.restaurant-ascii:contains('╭┄┄┄╮') {
+  color: #00ff77;
+  text-shadow: 0 0 5px #00ff77, 0 0 10px #00ff77;
+}
+
+/* OPEN sign flicker */
+@keyframes neon-flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    color: #ff5555;
+    text-shadow: 0 0 5px #ff5555, 0 0 8px #ff5555, 0 0 12px #ff5555;
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    text-shadow: none;
+    opacity: 0.5;
+  }
+}
+
+/* Rain animation */
+@keyframes rain {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 20px;
+  }
+}
+
+.restaurant-message {
+  margin-top: 1rem;
+  font-family: monospace;
+  color: #00ffff;
+  text-align: center;
+  position: relative;
+  min-height: 80px; /* Fixed minimum height */
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: rgba(0, 20, 30, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.typing-text {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 3s steps(40, end), cursor 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+.blink-text {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Keep chat interface in view and visible */
+#chat-interface {
+  scroll-margin-top: 2rem;
+  scroll-margin-bottom: 2rem;
+  width: 100%;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.space-y-4 {
+  width: 100%;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.space-y-4 > div {
+  max-width: 100%;
+}
+
+.space-y-4 > div > div {
+  max-width: 80%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
